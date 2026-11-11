@@ -32,7 +32,3 @@ module.exports = app;
 app.get('/version', (req, res) => {
     res.json({ version: process.env.APP_VERSION || '1.0.0' });
 });
-
-app.get('/version', (req, res) => {
-    res.json({ version: process.env.APP_VERSION || '1.0.0' });
-});
