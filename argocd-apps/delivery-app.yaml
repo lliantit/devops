@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/lliantit/devops.git
-    targetRevision: main
+    targetRevision: lab-5
     path: helm/delivery-chart
     helm:
       valueFiles:
