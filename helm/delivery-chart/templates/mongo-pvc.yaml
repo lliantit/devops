@@ -1,0 +1,14 @@
+{{- if .Values.mongodb.pvc.enabled -}}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ include "delivery-chart.fullname" . }}-mongo-pvc
+  labels:
+    {{- include "delivery-chart.labels" . | nindent 4 }}
+spec:
+  accessModes:
+    - {{ .Values.mongodb.pvc.accessMode }}
+  resources:
+    requests:
+      storage: {{ .Values.mongodb.pvc.storage }}
+  {{- end }}

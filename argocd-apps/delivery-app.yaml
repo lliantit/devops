@@ -1,0 +1,22 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: delivery-release
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/lliantit/devops.git
+    targetRevision: main
+    path: helm/delivery-chart
+    helm:
+      valueFiles:
+        - values-minikube.yaml
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: delivery-app
+  syncPolicy:
+    automated:
+      prune: true
+    syncOptions:
+      - CreateNamespace=true

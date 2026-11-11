@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "delivery-chart.fullname" . }}-test-connection"
+  labels:
+    {{- include "delivery-chart.labels" . | nindent 4 }}
+  annotations:
+    "helm.sh/hook": test
+spec:
+  containers:
+    - name: wget
+      image: busybox:1.36
+      command: ['wget']
+      args: ['-qO-', '{{ include "delivery-chart.fullname" . }}-api:{{ .Values.service.port }}/health']
+  restartPolicy: Never

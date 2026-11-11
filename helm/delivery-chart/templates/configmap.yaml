@@ -1,0 +1,9 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "delivery-chart.fullname" . }}-config
+  labels:
+    {{- include "delivery-chart.labels" . | nindent 4 }}
+data:
+  PORT: {{ .Values.config.port | quote }}
+  NODE_ENV: {{ .Values.config.nodeEnv | quote }}

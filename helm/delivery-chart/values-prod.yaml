@@ -1,0 +1,19 @@
+replicaCount: 3
+
+image:
+  tag: "1.1.0"
+
+config:
+  nodeEnv: "production"
+
+resources:
+  requests:
+    cpu: "150m"
+    memory: "192Mi"
+  limits:
+    cpu: "300m"
+    memory: "256Mi"
+
+ingress:
+  enabled: true
+  host: delivery.local

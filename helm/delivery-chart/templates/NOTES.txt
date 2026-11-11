@@ -1,0 +1,15 @@
+Реліз "{{ .Release.Name }}" успішно встановлено у namespace "{{ .Release.Namespace }}"!
+
+Конфігурація застосунку:
+- Образ: {{ .Values.image.repository }}:{{ .Values.image.tag }}
+- Кількість реплік: {{ .Values.replicaCount }}
+- Режим (NODE_ENV): {{ .Values.config.nodeEnv }}
+
+Спосіб підключення:
+{{- if .Values.ingress.enabled }}
+- Відкрийте у браузері: http://{{ .Values.ingress.host }}/health
+{{- else }}
+- Виконайте прокидання порту:
+  kubectl port-forward -n {{ .Release.Namespace }} svc/{{ include "delivery-chart.fullname" . }}-api 8780:{{ .Values.service.port }}
+  Після чого відкрийте адресу: http://localhost:8780/health
+{{- end }}
