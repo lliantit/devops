@@ -2,7 +2,7 @@ replicaCount: 1
 
 image:
   repository: delivery-api
-  tag: "1.1.0"
+  tag: "9.9.9"
   pullPolicy: IfNotPresent
 
 existingSecret: delivery-secret
